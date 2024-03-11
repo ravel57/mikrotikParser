@@ -9,7 +9,7 @@ import ru.ravel.mikrotikparcer.services.ConnectionsService
 
 @RestController
 @RequestMapping('/api/v1/')
-
+@CrossOrigin
 class ApiController {
 
 	ConnectionsService connectionsService
