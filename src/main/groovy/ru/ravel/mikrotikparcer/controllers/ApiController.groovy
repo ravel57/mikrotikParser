@@ -6,10 +6,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import ru.ravel.mikrotikparcer.services.CollectService
 import ru.ravel.mikrotikparcer.services.ConnectionsService
-
+@CrossOrigin
 @RestController
 @RequestMapping('/api/v1/')
-@CrossOrigin
 class ApiController {
 
 	ConnectionsService connectionsService
