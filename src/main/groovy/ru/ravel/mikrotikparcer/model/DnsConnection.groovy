@@ -1,13 +1,9 @@
-package ru.ravel.mikrotikparcer.domains
+package ru.ravel.mikrotikparcer.model
 
 import jakarta.persistence.Column
 import jakarta.persistence.Id
-import lombok.AllArgsConstructor
-import lombok.NoArgsConstructor
 
 
-@NoArgsConstructor
-@AllArgsConstructor
 class DnsConnection {
 
 	@Column(name = "dst_ip")
@@ -19,13 +15,12 @@ class DnsConnection {
 
 	boolean isIgnoreVpn
 
+
 	DnsConnection(String dstIP, String dstDNS) {
 		this.dstIP = dstIP
 		this.dstDNS = dstDNS
 	}
 
-	DnsConnection() {
-	}
 
 	boolean equals(o) {
 		if (this.is(o)) return true
@@ -38,6 +33,7 @@ class DnsConnection {
 
 		return true
 	}
+
 
 	int hashCode() {
 		int result

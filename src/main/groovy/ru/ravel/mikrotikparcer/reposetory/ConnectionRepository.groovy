@@ -3,8 +3,7 @@ package ru.ravel.mikrotikparcer.reposetory
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
-import org.springframework.data.repository.query.Param
-import ru.ravel.mikrotikparcer.domains.Connection
+import ru.ravel.mikrotikparcer.model.Connection
 
 interface ConnectionRepository extends JpaRepository<Connection, Long> {
 

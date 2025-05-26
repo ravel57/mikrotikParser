@@ -1,4 +1,5 @@
-package ru.ravel.mikrotikparcer.domains
+package ru.ravel.mikrotikparcer.model
+
 
 class HostConnection {
 

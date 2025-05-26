@@ -1,17 +1,11 @@
-package ru.ravel.mikrotikparcer.domains
+package ru.ravel.mikrotikparcer.model
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import lombok.AccessLevel
-import lombok.NoArgsConstructor
+import jakarta.persistence.*
 
 import java.time.ZonedDateTime
 
+
 @Entity
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 class Connection {
 
 	@Id

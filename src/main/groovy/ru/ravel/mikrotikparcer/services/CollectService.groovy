@@ -2,7 +2,8 @@ package ru.ravel.mikrotikparcer.services
 
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
-import ru.ravel.mikrotikparcer.domains.DnsConnection
+import ru.ravel.mikrotikparcer.model.DnsConnection
+import ru.ravel.mikrotikparcer.dto.GroupedDnsConnection
 import ru.ravel.mikrotikparcer.reposetory.ConnectionRepository
 
 @Service
@@ -25,11 +26,14 @@ class CollectService {
 	}
 
 
-	List<DnsConnection> getByDns(String name) {
+	List<GroupedDnsConnection> getByDns(String name) {
 		return connectionRepository.findByDstDNS(name)
 				.collect { new DnsConnection(it.dstIP, it.dstDNS) }
 				.unique { it.dstIP }
 				.each { it.isIgnoreVpn = connectionsService.isIgnoreVpn(it.dstDNS) }
+				.groupBy { it.dstDNS }
+				.collect { new GroupedDnsConnection(it.key, it.value, it.value.any { it.isIgnoreVpn }) }
+				.sort { it.dstDns }
 	}
 
 }
