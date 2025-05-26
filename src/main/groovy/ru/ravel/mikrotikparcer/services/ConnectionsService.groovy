@@ -21,16 +21,21 @@ class ConnectionsService {
 	private Logger log = LoggerFactory.getLogger(this.class)
 
 	private String ignoreVpnListName = "ignoreVpn"
-	@Value('${app.mikrotik.gateway}')
 	private String gateway
-	@Value('${app.mikrotik.user}')
 	private String user
-	@Value('${app.mikrotik.password}')
 	private String password
 
-	ConnectionsService(ConnectionRepository connectionRepository) {
-		connect = ApiConnection.connect(gateway)
-		connect.login(user, password)
+	ConnectionsService(
+			ConnectionRepository connectionRepository,
+			@Value('${app.mikrotik.gateway}') String gateway,
+			@Value('${app.mikrotik.user}') String user,
+			@Value('${app.mikrotik.password}') String password
+	) {
+		this.gateway = gateway
+		this.user = user
+		this.password = password
+		this.connect = ApiConnection.connect(gateway)
+		this.connect.login(user, password)
 		this.connectionRepository = connectionRepository
 	}
 
