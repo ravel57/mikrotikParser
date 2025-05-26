@@ -8,7 +8,7 @@ RUN npm run build
 
 FROM gradle:8.7.0-jdk21-alpine AS gradle
 COPY --chown=gradle:gradle . /home/gradle/
-COPY --from=nodejs /home/node/nginx-config-builder/dist/.  /home/gradle/src/main/resources/static/
+COPY --from=nodejs /home/node/mikrotik_parser/dist/.  /home/gradle/src/main/resources/static/
 WORKDIR /home/gradle/
 RUN gradle bootJar
 
