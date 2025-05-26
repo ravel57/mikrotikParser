@@ -3,6 +3,7 @@ package ru.ravel.mikrotikparcer.services
 import me.legrange.mikrotik.ApiConnection
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import ru.ravel.mikrotikparcer.dto.GroupedDnsConnection
 import ru.ravel.mikrotikparcer.model.Connection
@@ -20,10 +21,16 @@ class ConnectionsService {
 	private Logger log = LoggerFactory.getLogger(this.class)
 
 	private String ignoreVpnListName = "ignoreVpn"
+	@Value('${app.mikrotik.gateway}')
+	private String gateway
+	@Value('${app.mikrotik.user}')
+	private String user
+	@Value('${app.mikrotik.password}')
+	private String password
 
 	ConnectionsService(ConnectionRepository connectionRepository) {
-		connect = ApiConnection.connect(System.getenv("GATEWAY"))
-		connect.login(System.getenv("MIKROTIK_USER"), System.getenv("MIKROTIK_PASSWORD"))
+		connect = ApiConnection.connect(gateway)
+		connect.login(user, password)
 		this.connectionRepository = connectionRepository
 	}
 
